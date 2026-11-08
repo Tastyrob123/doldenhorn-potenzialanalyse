@@ -1,0 +1,15 @@
+/* Auftritte für Seiten ohne eigene (zu auftritt.js). Robert 18.10.2026, 18:17: los bei einem Fünftel im Bild, 0,85 s ohne Überschwingen, 40 px, Bilder und Blöcke
+   zoomen von 1,04 auf 1, Schrift nur der Weg, Reihen 0,12 s. Deckend ab dem ersten Bild. Als Animation, damit es auch im ersten Bild läuft. */
+@keyframes auHoch{from{transform:translate3d(0,40px,0)}}
+@keyframes auBlock{from{transform:translate3d(0,40px,0) scale(1.04)}}
+@keyframes auZoom{from{transform:scale(1.04)}}
+@media screen and (prefers-reduced-motion:no-preference){
+  .au-an .au{animation:none}   /* ein eigener Ladeauftritt (z. B. La Carte .teil) lief sonst ungesehen ab */
+  .au-an .au:not(.au--da){transform:translate3d(0,40px,0)}
+  .au-an .au.au--da{animation:auHoch .85s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--au-i,0) * 120ms)}
+  .au-an .au--block:not(.au--da){transform:translate3d(0,40px,0) scale(1.04)}
+  .au-an .au--block.au--da{animation-name:auBlock}
+  .au-an .au--bild{overflow:hidden}
+  .au-an figure.au--bild:not(.au--da) img{transform:scale(1.04)}
+  .au-an figure.au--bild.au--da img{animation:auZoom .85s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--au-i,0) * 120ms)}
+}
